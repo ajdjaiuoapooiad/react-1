@@ -12,7 +12,11 @@ function App() {
 
   const handleAddTodo = () => {
     // タスクを追加
-    console.log(todoNameRef.current.value);
+    const name = todoNameRef.current.value
+    setTodo((prevTodo) => {
+      return [...prevTodo, {id: '1',name: name, completed: false}];
+    })
+    todoNameRef.current.value = null;
     
   }
 
