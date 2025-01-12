@@ -4,7 +4,7 @@ import Todo from './Todo';
 
 
 const TodoList = ({todo}) => {
-  return todo.map((todo) => <Todo todo={todo} />)
+  return todo.map((todo) => <Todo todo={todo} key={todo} />)
 };
 
 export default TodoList
