@@ -5,7 +5,7 @@ import TodoList from './components/TodoList';
 import {v4 as uuidv4} from 'uuid';
 
 function App() {
-  const [ todo,setTodo ] = useState([
+  const [ todos,setTodos ] = useState([
     {id: 1,name: 'Todo1',completed: false},
   ]);
 
@@ -14,16 +14,23 @@ function App() {
   const handleAddTodo = () => {
     // タスクを追加
     const name = todoNameRef.current.value
-    setTodo((prevTodo) => {
+    setTodos((prevTodo) => {
       return [...prevTodo, {id: uuidv4(),name: name, completed: false}];
     })
     todoNameRef.current.value = null;
     
   }
 
+  const toggleTodo = (id) => {
+    const newTodo = [...todos];
+    const todo = newTodo.find((todo) => todo.id === id);
+    todo.completed = !todo.completed;
+    setTodos(newTodo)
+  }
+
   return (
     <div>
-      <TodoList todo={todo} />
+      <TodoList todos={todos} toggleTodo={toggleTodo} />
       <input type='text' ref={todoNameRef} />
       <button onClick={handleAddTodo}>タスクを追加</button>
       <button>タスクの削除</button>
