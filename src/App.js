@@ -28,13 +28,18 @@ function App() {
     setTodos(newTodo)
   }
 
+  const handleClear = () => {
+    const newTodos = todos.filter((todo) => !todo.completed)
+    setTodos(newTodos)
+  }
+
   return (
     <div>
       <TodoList todos={todos} toggleTodo={toggleTodo} />
       <input type='text' ref={todoNameRef} />
       <button onClick={handleAddTodo}>タスクを追加</button>
-      <button>タスクの削除</button>
-      <div>残りのタスク: 0</div>
+      <button onClick={handleClear}>タスクの削除</button>
+      <div>残りのタスク: {todos.filter((todo) => !todo.completed).length}</div>
     </div>
   );
 }
